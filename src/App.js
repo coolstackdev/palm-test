@@ -23,7 +23,7 @@ function App() {
       <ChakraProvider theme={theme}>
         <Box textAlign="center" fontSize="xl">
           <Grid minH="100vh">
-            <ColorModeSwitcher justifySelf="flex-end" position="absolute" />
+            <ColorModeSwitcher justifySelf="flex-end" position="absolute" top={3} right={3} />
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Home />} />

@@ -14,7 +14,8 @@ import {
   Link,
   Avatar,
   FormControl,
-  InputRightElement
+  InputRightElement,
+  useColorModeValue
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import { register } from '../store/authSlice';
@@ -54,7 +55,7 @@ const Register = () => {
       flexDirection="column"
       width="100wh"
       height="100vh"
-      backgroundColor="gray.200"
+      bg={useColorModeValue('gray.100', 'gray.900')}
       justifyContent="center"
       alignItems="center"
     >
@@ -70,7 +71,7 @@ const Register = () => {
           <Stack
             spacing={4}
             p="1rem"
-            backgroundColor="whiteAlpha.900"
+            bg={useColorModeValue('white', 'gray.700')}
             boxShadow="md"
           >
             <FormControl>
