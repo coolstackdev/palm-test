@@ -18,6 +18,7 @@ import {
   useColorModeValue
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
+
 import { register } from '../store/authSlice';
 
 const CFaUserAlt = chakra(FaUserAlt);
