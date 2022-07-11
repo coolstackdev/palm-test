@@ -40,7 +40,7 @@ const TransferModal = ({ isOpen, onClose }) => {
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Transfer</ModalHeader>
+        <ModalHeader data-testid="modal-title">Transfer</ModalHeader>
         <ModalCloseButton />
         <ModalBody pb={6}>
           <FormControl>

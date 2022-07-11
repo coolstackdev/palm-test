@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { balance, transactions } from '../__mock';
+import { balance, transactions } from '../__mocks__';
 
 export const transactionSlice = createSlice({
   name: 'transaction',

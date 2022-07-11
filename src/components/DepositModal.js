@@ -40,7 +40,7 @@ const DepositModal = ({ isOpen, onClose }) => {
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Deposit</ModalHeader>
+        <ModalHeader data-testid="modal-title">Deposit</ModalHeader>
         <ModalCloseButton />
         <ModalBody pb={6}>
           <FormControl>

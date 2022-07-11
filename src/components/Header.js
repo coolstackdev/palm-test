@@ -20,7 +20,7 @@ const Header = ({
   return (
     <Box bg={useColorModeValue('teal.400', 'teal.900')} px={4}>
       <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-        <Box>Palm NFT Dashboard</Box>
+        <Box data-testid="logo-title">Palm NFT Dashboard</Box>
         <Flex alignItems={'center'}>
           <Menu>
             <MenuButton
