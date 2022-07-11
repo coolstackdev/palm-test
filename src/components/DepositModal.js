@@ -3,15 +3,14 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
+  ModalBody,
+  ModalHeader,
+  ModalFooter,
+  ModalCloseButton,
   Button,
-  Flex,
-  Stack,
-  Box,
   FormControl,
   Input,
   FormLabel,
-  Heading,
-  useColorModeValue,
 } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 
@@ -29,6 +28,11 @@ const DepositModal = ({ isOpen, onClose }) => {
         fromAddress,
       })
     );
+
+    // reset values
+    setAmount(0);
+    setFromAddress('');
+
     onClose();
   };
 
@@ -36,38 +40,31 @@ const DepositModal = ({ isOpen, onClose }) => {
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <Flex align={'center'} justify={'center'}>
-          <Box bg={useColorModeValue('white', 'gray.700')} p={8}>
-            <Stack align={'center'}>
-              <Heading fontSize={'4xl'}>Deposit</Heading>
-            </Stack>
-            <Stack spacing={4}>
-              <FormControl>
-                <FormLabel>Amount</FormLabel>
-                <Input type="number" onInput={e => setAmount(e.target.value)} />
-              </FormControl>
-              <FormControl>
-                <FormLabel>From</FormLabel>
-                <Input
-                  type="text"
-                  onInput={e => setFromAddress(e.target.value)}
-                />
-              </FormControl>
-              <Stack spacing={10}>
-                <Button
-                  bg={'blue.400'}
-                  color={'white'}
-                  _hover={{
-                    bg: 'blue.500',
-                  }}
-                  onClick={handleSubmit}
-                >
-                  Submit
-                </Button>
-              </Stack>
-            </Stack>
-          </Box>
-        </Flex>
+        <ModalHeader>Deposit</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody pb={6}>
+          <FormControl>
+            <FormLabel>Amount</FormLabel>
+            <Input type="number" onInput={e => setAmount(e.target.value)} />
+          </FormControl>
+          <FormControl mt={4}>
+            <FormLabel>From</FormLabel>
+            <Input type="text" onInput={e => setFromAddress(e.target.value)} />
+          </FormControl>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            bg={'blue.400'}
+            color={'white'}
+            _hover={{
+              bg: 'blue.500',
+            }}
+            disabled={!amount || !fromAddress}
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
+        </ModalFooter>
       </ModalContent>
     </Modal>
   );

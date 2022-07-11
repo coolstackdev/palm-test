@@ -16,29 +16,36 @@ export const transactionSlice = createSlice({
       state.transactions = transactions;
     },
     deposit: (state, action) => {
-      console.log('deposit: ', action);
+      // Add transaction to transactionHistory
       state.transactions = [
         {
           date: Date.now(),
           amount: action.payload.amount,
           toAddress: '0xmyaddress',
           fromAddress: action.payload.fromAddress,
-          status: 'pending',
+          status: 'Success',
         },
         ...state.transactions,
       ];
+
+      // Update balance
+      state.balance += Number(Number(action.payload.amount).toFixed(2));
     },
     transfer: (state, action) => {
+      // Add transaction to transactionHistory
       state.transactions = [
         {
           date: Date.now(),
           amount: action.payload.amount,
           toAddress: action.payload.toAddress,
           fromAddress: '0xmyaddress',
-          status: 'pending',
+          status: 'Success',
         },
         ...state.transactions,
       ];
+
+      // Update balance
+      state.balance -= Number(Number(action.payload.amount).toFixed(2));
     },
   },
 });

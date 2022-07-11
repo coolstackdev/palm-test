@@ -3,15 +3,14 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
+  ModalBody,
+  ModalHeader,
+  ModalFooter,
+  ModalCloseButton,
   Button,
-  Flex,
-  Stack,
-  Box,
   FormControl,
   Input,
   FormLabel,
-  Heading,
-  useColorModeValue,
 } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 
@@ -29,6 +28,11 @@ const TransferModal = ({ isOpen, onClose }) => {
         toAddress,
       })
     );
+
+    // reset values
+    setAmount(0);
+    setToAddress('');
+
     onClose();
   };
 
@@ -36,38 +40,31 @@ const TransferModal = ({ isOpen, onClose }) => {
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <Flex align={'center'} justify={'center'}>
-          <Box bg={useColorModeValue('white', 'gray.700')} p={8}>
-            <Stack align={'center'}>
-              <Heading fontSize={'4xl'}>Transfer</Heading>
-            </Stack>
-            <Stack spacing={4}>
-              <FormControl>
-                <FormLabel>Amount</FormLabel>
-                <Input type="number" onInput={e => setAmount(e.target.value)} />
-              </FormControl>
-              <FormControl>
-                <FormLabel>To</FormLabel>
-                <Input
-                  type="text"
-                  onInput={e => setToAddress(e.target.value)}
-                />
-              </FormControl>
-              <Stack spacing={10}>
-                <Button
-                  bg={'blue.400'}
-                  color={'white'}
-                  _hover={{
-                    bg: 'blue.500',
-                  }}
-                  onClick={handleSubmit}
-                >
-                  Submit
-                </Button>
-              </Stack>
-            </Stack>
-          </Box>
-        </Flex>
+        <ModalHeader>Transfer</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody pb={6}>
+          <FormControl>
+            <FormLabel>Amount</FormLabel>
+            <Input type="number" onInput={e => setAmount(e.target.value)} />
+          </FormControl>
+          <FormControl mt={4}>
+            <FormLabel>To</FormLabel>
+            <Input type="text" onInput={e => setToAddress(e.target.value)} />
+          </FormControl>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            bg={'blue.400'}
+            color={'white'}
+            _hover={{
+              bg: 'blue.500',
+            }}
+            disabled={!amount || !toAddress}
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
+        </ModalFooter>
       </ModalContent>
     </Modal>
   );
